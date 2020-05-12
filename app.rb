@@ -5,12 +5,12 @@ require('pry')
 also_reload('lib/**/*.rb')
 
 get('/') do
-  @albums = Album.all
+  @albums = Album.sort
   erb(:albums) #erb file name
 end
 
 get('/albums') do
-  @albums = Album.all
+  @albums = Album.sort
   erb(:albums)
 end
 
@@ -22,20 +22,33 @@ get('/albums/:id') do
   @album = Album.find(params[:id].to_i())
   erb(:album)
 end
-# get('/albums/:id') do
-#   "This route will show a specific album based on its ID. The value of ID here is #{params[:id]}."
-# end
 
-post('/albums') do
+get('/albums/search') do
+  @album = Album.search(params[:name])
+  erb(:search)
+end
+
+post('/albums') do ## Adds album to list of albums, cannot access in URL bar
   name = params[:album_name]
-  album = Album.new(name, nil)
+  artist = params[:album_artist]
+  year = params[:album_year]
+  genre = params[:album_genre]
+  album = Album.new(name, nil, artist, genre, year)
   album.save()
   @albums = Album.all()
   erb(:albums)
 end
 
-# post('/albums') do
-#   "This route will add an album to our list of albums. We can't access this by typing in the URL. In a future lesson, we will use a form that specifies a POST action to reach this route."
+# get('/albums/:id/buy') do
+#   @album = Album.find(params[:id].to_i())
+#   erb(:buy_album)
+# end
+
+# patch('albums/:id') do 
+#   @album = Album.find(params[:id].to_i())
+#   @album.sold()
+#   @albums = Album.all_sold
+#   erb(:albums)
 # end
 
 get('/albums/:id/edit') do
@@ -60,3 +73,7 @@ end
 get('/custom_route') do
   "We can even create custom routes, but we should only do this when needed."
 end
+
+## implement sold() method on album.erb
+## implement sort method on albums.erb
+## implement search method on albums.erb

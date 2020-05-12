@@ -23,7 +23,7 @@ class Album
   def self.all_sold
     @@sold_albums.values()
   end
-  
+
   def save
     @@albums[self.id] = Album.new(self.name, self.id, self.artist, self.genre, self.year)
   end
@@ -63,12 +63,11 @@ class Album
 
   def self.sort()
     record_list = @@albums.values
-    # record_list.each 
     sorted_records = record_list.sort_by{ |record| record.name }
     sorted_records
   end
  
-  def sold
+  def sold()
     @@sold_albums[self.id] = Album.new(self.name, self.id, self.artist, self.genre, self.year)
     @@albums.delete(self.id)
   end
