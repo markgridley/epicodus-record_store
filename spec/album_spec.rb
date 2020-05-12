@@ -83,5 +83,13 @@ describe '#Album' do
       expect(album.year).to(eq("1959"))
     end
   end
+
+  describe('.search') do
+    it('will search through all albums and return an album that has a matching name') do
+      album = Album.new("Giant Steps", nil, "John Coltrane", "Jazz", "1959")
+      album.save()
+      expect(Album.search("Giant Steps")).to(eq(album))
+    end
+  end
 end
 
