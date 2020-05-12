@@ -1,3 +1,5 @@
+require 'pry'
+
 class Album
 
   attr_reader :id #Our new save method will need reader methods.
@@ -44,5 +46,17 @@ class Album
 
   def delete()
     @@albums.delete(self.id)
+  end
+
+  def self.search(name)
+    album_names = Album.all.map {|a| a.name }
+    # ["a", "b", "c"].grep(/a/) ===> ["a"]
+    result = []
+    names = album_names.grep(/#{name}/)
+    names.each do |n| 
+      display_albums = Album.all.select {|a| a.name == n}
+      result.push(display_albums)
+    end
+    result
   end
 end
