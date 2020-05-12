@@ -1,6 +1,6 @@
 class Album
 
-  attr_reader :id, :name #Our new save method will need reader methods.
+  attr_reader :id #Our new save method will need reader methods.
   attr_accessor :name
   @@albums = {}
   @@total_rows = 0 # We've added a class variable to keep track of total rows and increment the value when an ALbum is added.

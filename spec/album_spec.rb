@@ -1,5 +1,6 @@
 require 'rspec'
 require 'album'
+require 'pry'
 
 describe '#Album' do
 
@@ -33,6 +34,7 @@ describe '#Album' do
       expect(Album.all).to(eq([]))
     end
   end
+
   describe('#==') do
     it("is the same album if it has the same attributes as another album") do
       album = Album.new("Blue", nil)
@@ -68,6 +70,17 @@ describe '#Album' do
       album2.save()
       album.delete()
       expect(Album.all).to(eq([album2]))
+    end
+  end
+
+  describe('initialize') do
+    it('') do
+      album = Album.new("Giant Steps", nil, "John Coltrane", "Jazz", "1959")
+      album.save()
+      expect(album.name).to(eq("Giant Steps"))
+      expect(album.artist).to(eq("John Coltrane"))
+      expect(album.genre).to(eq("Jazz"))
+      expect(album.year).to(eq("1959"))
     end
   end
 end
