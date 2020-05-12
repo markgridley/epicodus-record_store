@@ -115,7 +115,7 @@ describe '#Album' do
       album1 = Album.new("Little Giant", nil, "Johnny Griffin", "Jazz", "1959")
       album1.save()
       album2.sold()
-      expect(@@sold_albums).to(eq([album2]))
+      expect(Album.all_sold).to(eq([album2]))
       expect(Album.all).to(eq([album, album1]))
     end
   end

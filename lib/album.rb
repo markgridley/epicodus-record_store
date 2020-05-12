@@ -6,6 +6,7 @@ class Album
   attr_accessor :name, :artist, :genre, :year
   @@albums = {}
   @@total_rows = 0 # We've added a class variable to keep track of total rows and increment the value when an ALbum is added.
+  @@sold_albums = {}
 
   def initialize(name, id, artist, genre, year)
     @name = name
@@ -19,6 +20,10 @@ class Album
     @@albums.values()
   end
 
+  def self.all_sold
+    @@sold_albums.values()
+  end
+  
   def save
     @@albums[self.id] = Album.new(self.name, self.id, self.artist, self.genre, self.year)
   end
@@ -62,5 +67,9 @@ class Album
     sorted_records = record_list.sort_by{ |record| record.name }
     sorted_records
   end
-
+ 
+  def sold
+    @@sold_albums[self.id] = Album.new(self.name, self.id, self.artist, self.genre, self.year)
+    @@albums.delete(self.id)
+  end
 end
