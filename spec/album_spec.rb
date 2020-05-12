@@ -53,16 +53,6 @@ describe '#Album' do
     end
   end
 
- describe('.search') do
-    it('will search through all albums and return an album that has a matching name') do
-      album = Album.new("Giant Steps", nil, "John Coltrane", "Jazz", "1959")
-      album.save()
-      album1 = Album.new("Little Giant", nil, "Johnny Cash", "Jazz", "1959")
-      album1.save()
-      expect(Album.search("Giant")).to(eq([[album], [album1]]))
-    end
-  end
-  
   describe('#update') do
     it("updates an album by id") do
       album = Album.new("Giant Steps", nil, "John Coltrane", "Jazz", "1959")
@@ -91,6 +81,27 @@ describe '#Album' do
       expect(album.artist).to(eq("John Coltrane"))
       expect(album.genre).to(eq("Jazz"))
       expect(album.year).to(eq("1959"))
+    end
+  end
+
+  describe('.search') do
+    it('will search through all albums and return an album that has a matching name') do
+      album = Album.new("Giant Steps", nil, "John Coltrane", "Jazz", "1959")
+      album.save()
+      album1 = Album.new("Little Giant", nil, "Johnny Cash", "Jazz", "1959")
+      album1.save()
+      expect(Album.search("Giant")).to(eq([[album, [album1]]))
+    end
+  end
+
+  describe('.sort') do
+    it('will sort all albums alphabetically') do
+      album = Album.new("Giant Steps", nil, "John Coltrane", "Jazz", "1959")
+      album.save()
+      album1 = Album.new("Little Giant", nil, "Johnny Cash", "Jazz", "1959")
+      album1.save()
+      Album.all.sort()
+      expect(Album.all).to(eq([[album, [album1]]))
     end
   end
 end

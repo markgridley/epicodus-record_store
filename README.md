@@ -22,7 +22,7 @@ _This application will allow the user to ._
 |   Behavior Description        |
 |-------------------------------|
 | 1. Allows user to also enter album year, genre & artist [√]|
-| 2. Allows user to search for an album by name []|
+| 2. Allows user to search for an album by name [√]|
 | 3. Allows user to sort album by name []|
 | 4. Allows user to "buy" an album using a sold() instance method []|
 | 5.  []|
