@@ -52,7 +52,7 @@ describe '#Album' do
       expect(Album.find(album.id)).to(eq(album))
     end
   end
-
+  
   describe('#update') do
     it("updates an album by id") do
       album = Album.new("Giant Steps", nil, "John Coltrane", "Jazz", "1959")
@@ -85,24 +85,38 @@ describe '#Album' do
   end
 
   describe('.search') do
-    it('will search through all albums and return an album that has a matching name') do
+    it('will search through all albums and return all albums that contain a matching name') do
       album = Album.new("Giant Steps", nil, "John Coltrane", "Jazz", "1959")
       album.save()
       album1 = Album.new("Little Giant", nil, "Johnny Cash", "Jazz", "1959")
       album1.save()
-      expect(Album.search("Giant")).to(eq([[album, [album1]]))
+      expect(Album.search("Giant")).to(eq([[album], [album1]]))
     end
   end
-
+  
   describe('.sort') do
     it('will sort all albums alphabetically') do
       album = Album.new("Giant Steps", nil, "John Coltrane", "Jazz", "1959")
       album.save()
-      album1 = Album.new("Little Giant", nil, "Johnny Cash", "Jazz", "1959")
+      album2 = Album.new("A Big", nil, "Johnny Cash", "Jazz", "1959")
+      album2.save()
+      album1 = Album.new("Little Giant", nil, "Johnny Griffin", "Jazz", "1959")
       album1.save()
-      Album.all.sort()
-      expect(Album.all).to(eq([[album, [album1]]))
+      expect(Album.sort()).to(eq([album2, album, album1]))
     end
   end
-end
 
+  # describe('#sold') do
+  #   it('will remove album from Album.all & put into @@sold_albums ') do
+  #     album = Album.new("Giant Steps", nil, "John Coltrane", "Jazz", "1959")
+  #     album.save()
+  #     album2 = Album.new("A Big", nil, "Johnny Cash", "Jazz", "1959")
+  #     album2.save()
+  #     album1 = Album.new("Little Giant", nil, "Johnny Griffin", "Jazz", "1959")
+  #     album1.save()
+  #     album2.sold()
+  #     expect(@@sold_albums).to(eq([album2]))
+  #     expect(Album.all).to(eq([album, album1]))
+  #   end
+  # end
+end

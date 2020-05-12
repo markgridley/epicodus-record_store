@@ -25,9 +25,6 @@ class Album
 
   def ==(album_to_compare)
     self.name() == album_to_compare.name()
-    self.artist() == album_to_compare.artist()
-    self.genre() == album_to_compare.genre()
-    self.year() == album_to_compare.year()
   end
 
   def self.clear
@@ -50,7 +47,6 @@ class Album
 
   def self.search(name)
     album_names = Album.all.map {|a| a.name }
-    # ["a", "b", "c"].grep(/a/) ===> ["a"]
     result = []
     names = album_names.grep(/#{name}/)
     names.each do |n| 
@@ -59,4 +55,12 @@ class Album
     end
     result
   end
+
+  def self.sort()
+    record_list = @@albums.values
+    # record_list.each 
+    sorted_records = record_list.sort_by{ |record| record.name }
+    sorted_records
+  end
+
 end
