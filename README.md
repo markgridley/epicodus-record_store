@@ -11,7 +11,7 @@ _This application will allow the user to ._
 ## Setup/Installation Requirements
 
 * _Clone Repository from GitHub :  https://github.com/christinereina/epicodus-record_store_
-* _Open folder in Virtual Studio Code (or your text editor of choice)_https://github.com/christinereina/epicodus-record_store_
+* Open folder in Virtual Studio Code (or your text editor of choice)_https://github.com/christinereina/epicodus-record_store
 
 ## Known Bugs
 
