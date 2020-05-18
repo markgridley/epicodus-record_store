@@ -1,4 +1,3 @@
-
 require('capybara/rspec')
 require('./app')
 Capybara.app = Sinatra::Application
@@ -17,7 +16,7 @@ end
 
 describe('create a song path', {:type => :feature}) do
   it('creates an album and then goes to the album page') do
-    album = Album.new("Yellow Submarine", nil, "The Beatles", "WhoCares", "1969")
+    album = Album.new({:name => "Giant Steps", :id => nil})
     album.save
     visit("/albums/#{album.id}")
     fill_in('song_name', :with => 'All You Need Is Love')
